@@ -1,0 +1,30 @@
+{
+    "name": "@webgate/awsutils",
+    "version": "0.1.1",
+    "description": "Some Utils for AWS",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha"
+    },
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WebGateConsultingAG/AWSUtils.git"
+    },
+    "keywords": [
+        "aws",
+        "lambda"
+    ],
+    "author": "Christian Guedemann",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/WebGateConsultingAG/AWSUtils/issues"
+    },
+    "homepage": "https://github.com/WebGateConsultingAG/AWSUtils#readme",
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "mocha": "^5.2.0"
+    }
+}
