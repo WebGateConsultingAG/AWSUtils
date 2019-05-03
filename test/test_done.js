@@ -1,13 +1,15 @@
 /*jshint expr: true*/
 
 var expect = require('chai').expect;
-var awsUtils = require('../index');
+var awsUtils = require('../dist/index');
 
 
 describe('AWSUtils.done', function() {
     it('done with positiv result', function() {
 
-        let payload = { load: 'ok' };
+        let payload = {
+            load: 'ok'
+        };
         let done = awsUtils.done((function(err, result) {
             expect(result).not.null.is;
             expect(result.statusCode).to.be.equal(200);
@@ -17,7 +19,9 @@ describe('AWSUtils.done', function() {
     });
     it('done with error payload', function() {
 
-        let payload = { load: 'ok' };
+        let payload = {
+            load: 'ok'
+        };
         let done = awsUtils.done((function(err, result) {
             expect(result).not.null;
             expect(result.statusCode).to.be.equal(400);
@@ -27,7 +31,9 @@ describe('AWSUtils.done', function() {
     });
     it('done with error with custom error code', function() {
 
-        let payload = { load: 'ok' };
+        let payload = {
+            load: 'ok'
+        };
         let done = awsUtils.done((function(err, result) {
             expect(result).not.null;
             expect(result.statusCode).to.be.equal(500);
@@ -37,8 +43,13 @@ describe('AWSUtils.done', function() {
     });
 
     it('check header', function() {
-        let stdHeaders = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
-        let payload = { load: 'ok' };
+        let stdHeaders = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        };
+        let payload = {
+            load: 'ok'
+        };
         let done = awsUtils.done((function(err, result) {
             expect(result).not.null;
             expect(result.headers).to.be.deep.equal(stdHeaders);
@@ -47,8 +58,13 @@ describe('AWSUtils.done', function() {
         done.done(payload);
     });
     it('check custom header', function() {
-        let customHeader = { 'Content-Type': 'application/xml-xsf', 'Access-Control-Allow-Origin': '*' };
-        let payload = { load: 'ok' };
+        let customHeader = {
+            'Content-Type': 'application/xml-xsf',
+            'Access-Control-Allow-Origin': '*'
+        };
+        let payload = {
+            load: 'ok'
+        };
         let done = awsUtils.done((function(err, result) {
             expect(result).not.null;
             expect(result.headers).to.be.deep.equal(customHeader);
