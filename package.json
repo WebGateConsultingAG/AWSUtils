@@ -1,6 +1,6 @@
 {
     "name": "@webgate/awsutils",
-    "version": "0.2.2",
+    "version": "0.5.0",
     "description": "Some Utils for AWS",
     "main": "index.js",
     "scripts": {
@@ -24,7 +24,9 @@
     },
     "homepage": "https://github.com/WebGateConsultingAG/AWSUtils#readme",
     "devDependencies": {
+        "@types/aws-lambda": "^8.10.25",
         "chai": "^4.1.2",
-        "mocha": "^5.2.0"
+        "mocha": "^5.2.0",
+        "typescript": "^3.4.5"
     }
 }
