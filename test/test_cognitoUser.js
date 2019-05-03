@@ -4,72 +4,31 @@ var expect = require('chai').expect;
 var awsUtils = require('../dist/index');
 
 
-describe('AWSUtils.done', function() {
-    it('done with positiv result', function() {
-
-        let payload = {
-            load: 'ok'
-        };
-        let done = awsUtils.done((function(err, result) {
-            expect(result).not.null.is;
-            expect(result.statusCode).to.be.equal(200);
-        }));
-
-        done.done(payload);
+describe('AWSUtils.cognitoUser', function() {
+    it('CognitoUser with no Authorizer', function() {
+        let authorizier = null;
+        const user = awsUtils.cognitoUser(authorizier);
+        expect(user).not.null.is;
+        expect(user.status).to.be.equals('noauthorizer');
     });
-    it('done with error payload', function() {
-
-        let payload = {
-            load: 'ok'
-        };
-        let done = awsUtils.done((function(err, result) {
-            expect(result).not.null;
-            expect(result.statusCode).to.be.equal(400);
-        }));
-
-        done.error(new Error("this is my error"));
+    it('CognitoUser with no User', function() {
+        let authorizier = {};
+        const user = awsUtils.cognitoUser(authorizier);
+        expect(user).not.null.is;
+        expect(user.status).to.be.equals('nouser');
     });
-    it('done with error with custom error code', function() {
+    it('CognitoUser with claims', function() {
+        let authorizier = {};
+        authorizier.claims = {};
+        authorizier.claims['cognito:username'] = "hm-acme";
+        authorizier.claims['cognito:groups'] = ['bo', 'admin'];
+        authorizier.claims.email = 'hans.muster@acme.com';
 
-        let payload = {
-            load: 'ok'
-        };
-        let done = awsUtils.done((function(err, result) {
-            expect(result).not.null;
-            expect(result.statusCode).to.be.equal(500);
-        }));
-
-        done.error(new Error("this is my error"), 500);
-    });
-
-    it('check header', function() {
-        let stdHeaders = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        };
-        let payload = {
-            load: 'ok'
-        };
-        let done = awsUtils.done((function(err, result) {
-            expect(result).not.null;
-            expect(result.headers).to.be.deep.equal(stdHeaders);
-        }));
-
-        done.done(payload);
-    });
-    it('check custom header', function() {
-        let customHeader = {
-            'Content-Type': 'application/xml-xsf',
-            'Access-Control-Allow-Origin': '*'
-        };
-        let payload = {
-            load: 'ok'
-        };
-        let done = awsUtils.done((function(err, result) {
-            expect(result).not.null;
-            expect(result.headers).to.be.deep.equal(customHeader);
-        }), customHeader);
-        expect(done.headers).to.be.deep.equals(customHeader);
-        done.done(payload);
+        const user = awsUtils.cognitoUser(authorizier);
+        expect(user).not.null.is;
+        expect(user.status).to.be.equals('cognitouser');
+        expect(user.username).to.be.equals('hm-acme');
+        expect(user.groups).to.be.deep.equals(['bo', 'admin']);
+        expect(user.email).to.be.equals('hans.muster@acme.com');
     });
 });
