@@ -15,8 +15,11 @@ exports.handler = function(event, context, callback) {
     // done is initialized with default headers
     const done = awsUtils.done(callback);
 
-    //doing some magic and submit a payload
+    //doing some magic and submit a payload as {success: true, data:palyload}
     done.done(payload);
+
+    //doing some magic and submit a payload as {payload}
+    done.response(paload)
 
     //something goes wrong and we need to submit an error -> this submits en error 400
     done.error(new Error('Urgs an error...'));
