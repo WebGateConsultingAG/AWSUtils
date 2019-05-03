@@ -4,6 +4,7 @@
     "description": "Some Utils for AWS",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "private": false,
     "scripts": {
         "build": "rimraf dist/** && tsc",
         "test": "mocha"
@@ -28,6 +29,8 @@
     "homepage": "https://github.com/WebGateConsultingAG/AWSUtils#readme",
     "devDependencies": {
         "@types/aws-lambda": "^8.10.25",
+        "@types/node": "^11.13.9",
+        "aws-sdk": "^2.448.0",
         "chai": "^4.1.2",
         "mocha": "^5.2.0",
         "rimraf": "^2.6.3",
