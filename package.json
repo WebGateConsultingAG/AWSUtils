@@ -2,8 +2,10 @@
     "name": "@webgate/awsutils",
     "version": "0.5.0",
     "description": "Some Utils for AWS",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
+        "build": "rimraf dist/** && tsc",
         "test": "mocha"
     },
     "directories": {
@@ -15,7 +17,8 @@
     },
     "keywords": [
         "aws",
-        "lambda"
+        "lambda",
+        "dynamodb"
     ],
     "author": "Christian Guedemann",
     "license": "Apache-2.0",
@@ -27,6 +30,7 @@
         "@types/aws-lambda": "^8.10.25",
         "chai": "^4.1.2",
         "mocha": "^5.2.0",
+        "rimraf": "^2.6.3",
         "typescript": "^3.4.5"
     }
 }
